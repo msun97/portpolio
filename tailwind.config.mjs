@@ -11,8 +11,14 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
         gray : "#5D5D5D",
+        gray10: "#F7F7F7",
         gray20 : "#E0E0E0",
+        gray40 : "#898989",
         gray90 : "#333333"
+      },
+      fontFamily: {
+      'pretendard400': ['Pretendard-Regular', 'system-ui' ],
+      'title': ['LOTTERIADDAG', 'Pretendard-Regular', 'system-ui']
       },
     },
   },
