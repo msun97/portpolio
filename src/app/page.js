@@ -1,36 +1,43 @@
+'use client'
 
 import Info from '@/components/Info';
+import Loading from '@/components/Loading';
 import Nav from '@/components/Nav';
 import ProjectList from '@/components/project/ProjectList';
 import SkillList from '@/components/project/SkillList';
-import ThreeObject from '@/components/ThreeObject';
+import gsap from 'gsap';
 import Link from 'next/link';
-import React from 'react';
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 
 export default function Home() {
+  const imgRef = useRef();
+
+  useEffect(() => {
+    document.body.classList.add('overflow-hidden'); 
+    return () => {
+      document.body.classList.remove('overflow-hidden'); 
+      const tl = gsap.timeline();
+        tl.to(imgRef.current, {
+        duration: 1,
+        y: 0,
+        delay: 1,
+      });
+    };
+  }, []);
+
+
+  useLayoutEffect(() => {
+    
+  }, []);
+
   return (
-    <div className='wrap text-gray10 font-pretendard400'>
-      <div className="loading hidden">
-        <div className='loading-skills absolute top-0 left-0 w-screen h-screen flex flex-col justify-center items-center align-center z-10 bg-white text-gray90'>
-        <div className="skill flex text-5xl justify-center items-center">
-          WEB
-          <div className='flex justify-center items-center skill-container ml-[259px] w-[347px] h-[141px] border-[3px] rounded-2xl'>
-            <span>HTML</span>
-            <span className='hidden'>CSS</span>
-            <span className='hidden'>JavaScript</span>
-            <span className='hidden'>React</span>
-          </div>
-        </div>
-        </div>
-        <div className="logo-container absolute top-0 left-0 w-screen h-screen bg-gray90 flex justify-center items-center align-center text-9xl font-title z-20">
-          <h1>PORTFOLIO</h1>
-        </div>
-      </div>
+    <div className='wrap text-gray10 font-pretendard400 w-screen h-screen max-h-[860px] '>
+      <Loading />
       <Nav />
       <div className='main-container w-screen px-40'>
         <section className='about h-screen'>
           <div className='about-wrapper flex mt-[110px] gap-[110px]'>
-            <div className='img-container  w-[320px] h-[450px]'>
+            <div ref={imgRef} className='img-container  w-[320px] h-[450px] translate-y-[-500px]'>
               <img src="images/profile.jpg" alt="profile" width={320} height={450} className='w-[320px] h-[450px]' />
             </div>
             <div className='info-container'>
@@ -54,8 +61,7 @@ export default function Home() {
               SKILLS
               <ul className='flex gap-[16px] text-[14px]'>
                 <SkillList skill='React'/>
-                <li>GSAP</li>
-                <li>TailWind CSS</li>
+                <SkillList skill='GSAP'/>
               </ul>
             </div>
           </div>
@@ -66,23 +72,28 @@ export default function Home() {
           </div>
 
         </section>
-        <section className='contact'>
-          <div className='contactTitle'>CONTACT ME</div>
+        <section className='contact w-screen h-screen'>
+          <div className='contactTitle font-title w-[737px] text-[128px]'>CONTACT ME</div>
           <div className='object3D'>
             {/* <ThreeObject/> */}
           </div>
-          <div className='contactData'>
-            <Link href="tel:01029480052">
+          <div className='contactData mt-[60px] flex flex-col gap-[24px] text-[40px]'>
+            <Link href="tel:01029480052" className='flex gap-8'>
                 <span>H.P </span>
                 <span>010-2948-0052</span>
             </Link>
-            <Link href="mailto:miseong827@gmail.com">
+            <Link href="mailto:miseong827@gmail.com" className='flex gap-5'>
                 <span>MAIL </span>
                 <span>miseong827@gmail.com</span>
             </Link>
           </div>
         </section>
       </div>
+      <footer className='w-screen text-[20px] flex mt-[210px] mb-[80px] px-[160px] justify-between'>
+        <div className='name'>KIM MISEON</div>
+        <div className='job'>Front-End Engineer</div>
+        <div className='years'>2025</div>
+      </footer>
     </div>
   );
 }

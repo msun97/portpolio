@@ -2,7 +2,7 @@ import React from 'react'
 
 const SkillList = ({skill}) => {
   return (
-    <li>{skill}</li>
+    <li className='w-[64px] h-[24px] rounded-[20px] border text-center'>{skill}</li>
   )
 }
 
