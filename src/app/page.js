@@ -6,6 +6,7 @@ import Nav from '@/components/Nav';
 import ProjectList from '@/components/project/ProjectList';
 import SkillList from '@/components/project/SkillList';
 import gsap from 'gsap';
+import Image from 'next/image';
 import Link from 'next/link';
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 
@@ -23,7 +24,7 @@ export default function Home() {
               ref={imgRef}
               className="img-container  w-[320px] h-[450px] translate-y-[-500px]"
             >
-              <img
+              <Image
                 src="images/profile.jpg"
                 alt="profile"
                 width={320}
